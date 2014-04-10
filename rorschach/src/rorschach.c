@@ -1,4 +1,5 @@
 #include <pebble.h>
+#include "autoconfig.h"
 
 Window *window;
 
@@ -20,6 +21,7 @@ const int IMAGE_RESOURCE_REVERSE_IDS[NUMBER_OF_IMAGES] = {
   RESOURCE_ID_IMAGE_NUM_9_REVERSE
 };
 
+InverterLayer* inverter_layer;
 BitmapLayer *image_containers[TOTAL_IMAGE_SLOTS];
 GBitmap     *bitmaps[TOTAL_IMAGE_SLOTS];
 
@@ -103,12 +105,22 @@ void handle_minute_tick(struct tm *tick_time, TimeUnits units_changed) {
   layer_mark_dirty(window_get_root_layer(window));
 }
 
+static void in_received_handler(DictionaryIterator *iter, void *context) {
+  autoconfig_in_received_handler(iter, context);
+
+  layer_set_hidden(inverter_layer_get_layer(inverter_layer), !getInverted());
+}
+
 
 void handle_init() {
+  autoconfig_init();
 
   window = window_create();
   
   window_set_background_color(window, GColorWhite);
+  window_stack_push(window, true);
+
+  app_message_register_inbox_received(in_received_handler);
 
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_frame(window_layer);
@@ -122,9 +134,11 @@ void handle_init() {
     layer_add_child(window_layer, bitmap_layer_get_layer(image_containers[i]));
   }
 
-  tick_timer_service_subscribe(MINUTE_UNIT, handle_minute_tick);
+  inverter_layer = inverter_layer_create  (bounds);
+  layer_set_hidden(inverter_layer_get_layer(inverter_layer), !getInverted());
+  layer_add_child(window_layer, inverter_layer_get_layer(inverter_layer));
 
-  window_stack_push(window, true);
+  tick_timer_service_subscribe(MINUTE_UNIT, handle_minute_tick);
 }
 
 
@@ -133,7 +147,9 @@ void handle_deinit() {
     unload_digit_image_from_slot(i);
     bitmap_layer_destroy(image_containers[i]);
   }
+  inverter_layer_destroy(inverter_layer);
   window_destroy(window);
+  autoconfig_deinit();
 }
 
 
