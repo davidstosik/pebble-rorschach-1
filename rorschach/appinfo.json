@@ -2,9 +2,9 @@
   "uuid": "c9261547-7141-44ff-837a-86ecdffd2663",
   "shortName": "Rorschach",
   "longName": "Rorschach",
-  "companyName": "Dansl",
-  "versionCode": 3,
-  "versionLabel": "2.0.1",
+  "companyName": "Gregoire Sage",
+  "versionCode": 4,
+  "versionLabel": "2.1.0",
   "capabilities": [
         "configurable"
     ],
@@ -71,56 +71,6 @@
         "type": "png",
         "name": "IMAGE_NUM_9",
         "file": "images/9.png"
-      },
-      {
-        "type": "png",
-        "name": "IMAGE_NUM_0_REVERSE",
-        "file": "images/0_REVERSE.png"
-      },
-      {
-        "type": "png",
-        "name": "IMAGE_NUM_1_REVERSE",
-        "file": "images/1_REVERSE.png"
-      },
-      {
-        "type": "png",
-        "name": "IMAGE_NUM_2_REVERSE",
-        "file": "images/2_REVERSE.png"
-      },
-      {
-        "type": "png",
-        "name": "IMAGE_NUM_3_REVERSE",
-        "file": "images/3_REVERSE.png"
-      },
-      {
-        "type": "png",
-        "name": "IMAGE_NUM_4_REVERSE",
-        "file": "images/4_REVERSE.png"
-      },
-      {
-        "type": "png",
-        "name": "IMAGE_NUM_5_REVERSE",
-        "file": "images/5_REVERSE.png"
-      },
-      {
-        "type": "png",
-        "name": "IMAGE_NUM_6_REVERSE",
-        "file": "images/6_REVERSE.png"
-      },
-      {
-        "type": "png",
-        "name": "IMAGE_NUM_7_REVERSE",
-        "file": "images/7_REVERSE.png"
-      },
-      {
-        "type": "png",
-        "name": "IMAGE_NUM_8_REVERSE",
-        "file": "images/8_REVERSE.png"
-      },
-      {
-        "type": "png",
-        "name": "IMAGE_NUM_9_REVERSE",
-        "file": "images/9_REVERSE.png"
       }
     ]
   },
